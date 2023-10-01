@@ -20,11 +20,12 @@ public class Inimigo {
     }
     double Calcular__Defesa_inimigo(double def_inimigo, int lv_inimigo) {
         //Função que recebe um valor de 'defesa' do Banco de dados e retorna os pontos de defesa do inimigo atual.
-        def_inimigo = def_inimigo + ()
+        def_inimigo = def_inimigo + (2 +(lv_inimigo/2));
         return pontos_defesa_inimigo = def_inimigo;
     }
-    double Calcular_Dano_Inimigo(double ataque_inimigo){      
+    double Calcular_Dano_Inimigo(double ataque_inimigo, int lv_inimigo){      
         //Função que recebe um valor de 'ataque' do Banco de dados e retorna os pontos de ataque do inimigo atual.
+        ataque_inimigo = ataque_inimigo  + (2 +(lv_inimigo/2));
         return dano_inimigo = ataque_inimigo;
     }
     int Calcular_Nivel_Inimigo(int lv_inimigo) {

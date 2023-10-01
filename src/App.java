@@ -62,8 +62,8 @@ public class App {
             //Declaração dos stautus (Valores dos atributos do inimigo):
             enemy.Calcular_Nivel_Inimigo(1+sala); //Nivel inimigo;
             enemy.Definir_Nome_Inimigo(vetor_dados.nomes_ini[indice = gerador.nextInt(3)]); //Nome inimigo;
-            enemy.Calcular_Dano_Inimigo(vetor_dados.pontos_atk_ini[indice = gerador.nextInt(3)] + (2 + (enemy.nivel_inimigo/2))); //Pontos de ataque do inimigo;
-            enemy.Calcular__Defesa_inimigo(vetor_dados.pontos_def_ini[indice = gerador.nextInt(3)] + (2 + (enemy.nivel_inimigo/2))); //Pontos de defesa do inimigo;
+            enemy.Calcular_Dano_Inimigo(vetor_dados.pontos_atk_ini[indice = gerador.nextInt(3)], enemy.nivel_inimigo); //Pontos de ataque do inimigo;
+            enemy.Calcular__Defesa_inimigo(vetor_dados.pontos_def_ini[indice = gerador.nextInt(3)], enemy.nivel_inimigo); //Pontos de defesa do inimigo;
             enemy.Calcular_PV_Inimigo(vetor_dados.pvs_ini[indice = gerador.nextInt(3)], enemy.nivel_inimigo); //Pontos de vida do inimigo.
 
             //Alerta de que o jogador encontrou um inimigo:
@@ -83,7 +83,7 @@ public class App {
                 //Opção para caso o jogador escolha atacar o inimigo (Há a chance de ser morto):
                 case "ATK":
                 player.Causa_dano(player.pontos_ataque, enemy.pontos_vida_inimigo, enemy.pontos_defesa_inimigo);
-                enemy.Calcular_PV_Inimigo(player.Causa_dano(player.pontos_ataque, enemy.pontos_vida_inimigo, enemy.pontos_defesa_inimigo));
+                enemy.Calcular_PV_Inimigo(player.Causa_dano(player.pontos_ataque, enemy.pontos_vida_inimigo, enemy.pontos_defesa_inimigo), 0);
 
                 //Estrutura de repetição para saber se o inimigo foi derrotado ou não.
                 if  (enemy.pontos_vida_inimigo <= 0){ //Caso ele tenha sido derrotado:
@@ -96,7 +96,7 @@ public class App {
                     enemy.nome_inimigo, player.pontos_ataque, enemy.pontos_vida_inimigo);
                     
                     enemy.Atacar_Jogador(player.pontos_vida, enemy.dano_inimigo, player.pontos_defesa);
-                    player.Calcular_Vida(enemy.Atacar_Jogador(player.pontos_vida, enemy.dano_inimigo, player.pontos_defesa));
+                    player.Calcular_Vida(enemy.Atacar_Jogador(player.pontos_vida, enemy.dano_inimigo, player.pontos_defesa), 0);
                     
                     //Estrutura de repetição (IF/ELSE) para saber se o jogador foi morto ou não.
                     if (player.pontos_vida <= 0){ //Caso o jogador tenha sido derrotado:
@@ -121,7 +121,6 @@ public class App {
 
                 //Opção para caso o jogador esolha curar o seu personagem:
                 case "CURAR":
-
                 player.Curar(player.pontos_vida, 5); //Essa função irá retornar a vida do jogador após a cura.
                 System.out.format("Você se curou em 5 pontos! Agora seus pontos de vida atuais são: %.1f \n", player.pontos_vida);
                 System.out.print("\nInsira uma ação novamente para continuar: (ATK) || (CHECK) || (CURAR) || (FUGIR):  ");
