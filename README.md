@@ -5,12 +5,13 @@
 
 ## Caracteristicas 
 - Salas e inimigos aleatórias;
-- Sistema de nivel e atributos; (Feito)
-- Progresso continuo, perfeito para "runs" curtas; (Em processo)
-- Itens unícos e Habilidades interessantes; (Em processo)
-- Jogabilidade simples, com um tutorial intuitivo; (Feito)
-- Menu interativo. (Feito)
+- Sistema de nivel e atributos; 
+- Progresso continuo, perfeito para "runs" curtas;
+- Itens unícos e Habilidades interessantes;
+- Jogabilidade simples, com um tutorial intuitivo; 
+- Menu interativo.
 
 ## História: 
-> Você, um aventureiro novato, foi enviado para uma masmorra com a missão de finaliza-la. Agora cabe a você, bravo cavaleiro, desbravar esta masmorra e conquistar o seu tesouro. 
+> Você, um aventureiro novato, ouviu os boatos de uma masmorra com 100 salas, cujo o tesouro contido na ultima sala tem o poder de realizar qualquer desejo.
+>Contudo, uma vez que alguem a adentra, é impossivel retroceder. Existem rumores de que caso você tente sair da masmorra sem chegar ao ultimo andar, a pessoa sofrerá de uma horrível maldição, tal qual disfigura seu corpo e mente, tornando-a um dos montros presente dentro da masmorra.
 

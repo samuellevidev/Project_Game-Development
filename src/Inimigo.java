@@ -1,46 +1,97 @@
-public class Inimigo {
+public class Inimigo extends Personagem {
     //Atributos: 
-    String nome_inimigo;
-    int nivel_inimigo;
-    double dano_inimigo;
-    double pontos_vida_inimigo;
-    double pontos_defesa_inimigo;
-    
+    private String inimigos [] = {"Esqueleto", "Slime", "Gárgula", "Planta Carnívora", "Fantasma", "Goblin"};
+    private String chefoes [] = {"Serpente Solitária", "Ogro Raivoso", "Mercador Lunático", "Incubus Melancólico", "???"};
+    private boolean boss;
 
-    //Funções refrentes aos atributos do inimigo:
-
-    String Definir_Nome_Inimigo(String n_inimigo) {
-        //Função que recebe um 'nome' do Banco de dados e retorna o nome do inimigo atual.
-        return nome_inimigo = n_inimigo;
+    /*Funções e Métodos:
+    * Getters: Retorna o valor da varíavel
+    * Setters: Atribui um valor a varíavel.
+    */
+    //Variável Boss:
+    public boolean getBoss() {
+        return boss;
     }
-    double Calcular_PV_Inimigo(double pv_inimigo, int lv_inimigo) {
-        //Função que recebe um valor de 'vida' do Banco de dados e retorna o pontos de vida do inimigo atual
-        pv_inimigo = pv_inimigo + (5 +(lv_inimigo/4));
-        return pontos_vida_inimigo = pv_inimigo;
-    }
-    double Calcular__Defesa_inimigo(double def_inimigo, int lv_inimigo) {
-        //Função que recebe um valor de 'defesa' do Banco de dados e retorna os pontos de defesa do inimigo atual.
-        def_inimigo = def_inimigo + (2 +(lv_inimigo/2));
-        return pontos_defesa_inimigo = def_inimigo;
-    }
-    double Calcular_Dano_Inimigo(double ataque_inimigo, int lv_inimigo){      
-        //Função que recebe um valor de 'ataque' do Banco de dados e retorna os pontos de ataque do inimigo atual.
-        ataque_inimigo = ataque_inimigo  + (2 +(lv_inimigo/2));
-        return dano_inimigo = ataque_inimigo;
-    }
-    int Calcular_Nivel_Inimigo(int lv_inimigo) {
-        //Função que recebe um valor de 'nivel' do Banco de dados e retorna o nivel do inimigo atual.
-        return nivel_inimigo = lv_inimigo;
+    public void setBoss(boolean status_boss) {
+        this.boss = status_boss;
     }
 
-    //Funções referentes ás ações do inimigo:
-    double Atacar_Jogador (double pv_jogador, double atk_inimigo, double def_jogador) {
-        //Função de ataque inimigo, ela recebe os pontos de vida do jogador e os pontos de atque inimigo, e retorna a vida do jogador após o ataque.
-        if (pv_jogador < (pv_jogador - (atk_inimigo - (def_jogador/3))))
+    //Variável Inimigos:
+    public void setInimigos(int i) {
+        this.inimigos[i] = inimigos[i];
+    }
+    public String getInimigos(int i) {
+        return inimigos[i];
+    }
+
+    //Variável Chefões
+    public String getChefoes(int i) {
+        return chefoes[i];
+    }
+    //FUNÇÕES POLIMORFADAS COM SOBREPOSIÇÃO DA CLASSE PERSONAGEM: 
+
+    //Função que retorna o dano causado ao jogador pelo inimigo:
+    @Override
+    public double Atacar(double atk_inimigo, double pv_jogador, double def_jogador){
+        if ((pv_jogador < (pv_jogador - (atk_inimigo - (def_jogador/1.5)))))
             return pv_jogador;
-        else 
-            return (pv_jogador -  (atk_inimigo - (def_jogador/3)));
+        else
+            return (pv_jogador - (atk_inimigo - (def_jogador/1.5)));
     }
 
-
+    //Função que atribui os valores aos atributos do Inimigo:
+    public void setInimigo(int sala, int gerador_int) {
+        /*
+        * Essa estrutura de repetição (IF/ELSE) é utilizada para definir se o inimigo atual é um CHEFÃO ou não,
+        * Caso ele seja, seus valores serão diferentes dos inimigos normais.
+        */
+        if (sala == 20) {
+            setBoss(true);
+            setNome(getChefoes(0));
+            setNivel(sala, sala, 2);
+            setPontos_De_Vida(15, getNivel(), 2);
+            setPontos_de_Ataque(7.5, getNivel(), 4);
+            setPontos_de_Defesa(5, getNivel(), 4);
+        }
+        else if (sala == 40){
+            setBoss(true);
+            setNome(getChefoes(1));
+            setNivel(sala, sala, 2);
+            setPontos_De_Vida(20, getNivel(), 2);
+            setPontos_de_Ataque(10, getNivel(), 4);
+            setPontos_de_Defesa(8.5, getNivel(), 4);
+        }
+        else if (sala == 60) {
+            setBoss(true);
+            setNome(getChefoes(2));
+            setNivel(sala, sala, 2);
+            setPontos_De_Vida(25, getNivel(), 2);
+            setPontos_de_Ataque(14, getNivel(), 4);
+            setPontos_de_Defesa(12, getNivel(), 4);
+        }
+        else if (sala == 80) {
+            setBoss(true);
+            setNome(getChefoes(3));
+            setNivel(sala, sala, 2);
+            setPontos_De_Vida(30, getNivel(), 2);
+            setPontos_de_Ataque(17.5, getNivel(), 4);
+            setPontos_de_Defesa(15.5, getNivel(), 4);
+        }
+        else if (sala == 100) {
+            setBoss(true);
+            setNome(getChefoes(4));
+            setNivel(sala, sala, 2);
+            setPontos_De_Vida(35, getNivel(), 2);
+            setPontos_de_Ataque(20, getNivel(), 4);
+            setPontos_de_Defesa(18, getNivel(), 4);
+        }
+        else {
+            setBoss(false);
+            setNome(getInimigos(gerador_int));
+            setNivel(1, sala, 2);
+            setPontos_De_Vida(15, getNivel(), 2);
+            setPontos_de_Ataque(6.5, getNivel(), 4);
+            setPontos_de_Defesa(4, getNivel(), 4);
+        }
+    }
 }

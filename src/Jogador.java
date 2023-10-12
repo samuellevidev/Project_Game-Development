@@ -1,54 +1,57 @@
 
-public class Jogador {
-    //Atributos:
-    String nome; //Nome dado pelo jogador.
-    String escolha; //Escolha que será fornecida pelo jogador.
-    int nivel = 1; //Valor referente a quão experiente o jogador é.
-    double pontos_vida; //Valor referente a quantidade de vida (Saúde) do jogador.
-    int pontos_experiencia; //Valor que molda o nivel do jogador.
-    double pontos_ataque; //Valor referente a forca do jogador.
-    double pontos_defesa; //Valor referente a resistência do jogador.
-    
+public class Jogador extends Personagem{
+    //Atributos proprios da classe Jogador:
+    private String escolha; //Escolha que será fornecida pelo jogador.
+    private int pontos_experiencia; //Valor que molda o nivel do jogador.
 
-    /*
-        Metódos/Funções (Ações ou Funcionalidades)
-        Funções referentes aos atributos do jogador:
+    /*Funções e Métodos:
+    * Getters: Retorna o valor da variável
+    * Setters: Atribui um valor a variável.
     */
-    int Calcular_Nivel(int lv, int exp) {
-        lv = lv + (exp/4);
-        return nivel = lv;
+    //Variável Escolha:
+    public String getEscolha() {
+        return escolha;
     }
-    
-    double Calcular_Vida(double pv_jogador, int lv) {
-        pv_jogador = pv_jogador + 3*(lv/4);
-        return pontos_vida = pv_jogador;
+    public void setEscolha(String escolha) {
+        this.escolha = escolha;
     }
 
-    double Calcular_Ataque(double p_atk, int lv) {
-        p_atk = p_atk + (lv/2);
-        return pontos_ataque = p_atk;
+    //Variável Pontos de experiência:
+    public void setPontos_Experiencia(boolean result, int lv_inimigo) {
+        if (result == true) 
+            this.pontos_experiencia += (lv_inimigo*2);
+        else 
+            this.pontos_experiencia += 0;
     }
-
-    double Calcular_Defesa (double p_def, int lv) {
-        p_def = p_def + (lv/2);
-        return pontos_defesa = p_def;
+    public int getPontos_Experiencia() {
+        return pontos_experiencia;
     }
+    //FUNÇÕES POLIMORFADAS COM SOBREPOSIÇÃO DA CLASSE PERSONAGEM: 
 
-    //Funções referentes as ações do jogador:
-    double Causa_dano(double atk, double pv_inimigo, double def_ini) {
-        //Função de ataque, ela recebe os valores do atque do jogador e vida do inimigo na classe main, e retorna a vida do inimigo após causar o dano.
-        if (pv_inimigo < (pv_inimigo - (atk - (def_ini/3))))
+    //Função que retorna o dano causado ao inimigo pelo jogador:
+    @Override
+    public double Atacar(double atk_jogador, double pv_inimigo, double def_inimigo){
+        if (pv_inimigo < (pv_inimigo - (atk_jogador - (def_inimigo/4) )))
             return pv_inimigo;
-        else 
-            return (pv_inimigo - (atk - (def_ini/3)));
-    }
-    double Curar(double pv_jogador, double cura) {
-        //Função de cura, ela recebe a vida do jogador e o valor de cura na classe main, e retorna a vida do jogador após a cura.
-        if (pv_jogador >= (pv_jogador + cura))
-            return pv_jogador;
-        else 
-            return pontos_vida = (pv_jogador + cura);
+        else
+            return (pv_inimigo - (atk_jogador - (def_inimigo/4)));
     }
 
+
+    //Função que retorna o valor curado pelo jogador:
+    public double Curar(double pv_jogador, double cura, int lv) {
+        if (pv_jogador >= (pv_jogador + (cura + lv*4.5)))
+            return pv_jogador;
+        else
+            return pv_jogador = (pv_jogador + (cura + lv*4.5));
+    }
+
+    //Função que atribui os valores dos atributos do jogador:
+    public void setJogador() {
+        setNivel(1, getPontos_Experiencia(), 4);
+        setPontos_De_Vida(12, 3*(getNivel()), 4);
+        setPontos_de_Ataque(8, getNivel(), 3);
+        setPontos_de_Defesa(5, getNivel(), 2);
+    }
 
 }
