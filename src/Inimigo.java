@@ -33,10 +33,10 @@ public class Inimigo extends Personagem {
     //Função que retorna o dano causado ao jogador pelo inimigo:
     @Override
     public double Atacar(double atk_inimigo, double pv_jogador, double def_jogador){
-        if ((pv_jogador < (pv_jogador - (atk_inimigo - (def_jogador/1.5)))))
+        if ((pv_jogador < (pv_jogador - (atk_inimigo - (def_jogador/3)))))
             return pv_jogador;
         else
-            return (pv_jogador - (atk_inimigo - (def_jogador/1.5)));
+            return (pv_jogador - (atk_inimigo - (def_jogador/3)));
     }
 
     //Função que atribui os valores aos atributos do Inimigo:

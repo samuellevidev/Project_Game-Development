@@ -79,7 +79,7 @@ public class App {
                         //Estrutura de repetição para saber se o inimigo foi derrotado ou não.
                         if  (enemy.getPontos_De_Vida() <= 0){ //Caso ele tenha sido derrotado:
                             player.setPontos_Experiencia(true, enemy.getNivel());
-                            System.out.print("\nO inimigo foi derrotado! Você recebu 5 pontos de Experiência. \n"+
+                            System.out.print("\nO inimigo foi derrotado! Você recebu " + (enemy.getNivel()*2) + " pontos de Experiência. \n"+
                                 "Escolha uma das opções para continuar Avançar(AVA) || Ver Status(VER) || Sair(SAIR): ");
                         }
                         else { //Caso não:
@@ -95,7 +95,7 @@ public class App {
                             }
                             else { //Caso não:
                                 System.out.format("O %s atacou você! Ele causou %.1f de dano ao seu personagem. Sua vida atual é de %.1f\n",
-                                enemy.getNome(), (enemy.getPontos_de_Ataque() - (player.getPontos_de_Defesa()/1.5)), player.getPontos_De_Vida());
+                                enemy.getNome(), (enemy.getPontos_de_Ataque() - (player.getPontos_de_Defesa()/3)), player.getPontos_De_Vida());
                                 System.out.print("\nInsira uma ação novamente para continuar: (ATK) || (CHECK) || (CURAR) || (FUGIR):  ");
                                 player.setEscolha(entrada.nextLine());
                             }
@@ -112,13 +112,13 @@ public class App {
 
                     //Opção para caso o jogador esolha curar o seu personagem:
                     case "CURAR": 
-                        player.setPontos_De_Vida(player.Curar(player.getPontos_De_Vida(), 8, player.getNivel()));
-                        System.out.format("Você se curou em %.1f pontos! Agora seus pontos de vida atuais são: %.1f \n", 
-                        player.Curar(player.getPontos_De_Vida(), 8, player.getNivel()), player.getPontos_De_Vida());
+                        player.setPontos_De_Vida(player.Curar(player.getPontos_De_Vida(), 0.1, player.getNivel()));
+                        System.out.format("Você se curou completamente! Agora seus pontos de vida atuais são: %.1f \n", 
+                        player.getPontos_De_Vida());
 
                         player.setPontos_De_Vida(enemy.Atacar(enemy.getPontos_de_Ataque(), player.getPontos_De_Vida(), player.getPontos_de_Defesa()));
                         System.out.format("O %s atacou você! Ele causou %.1f de dano ao seu personagem. Sua vida atual é de %.1f\n",
-                        enemy.getNome(), (enemy.getPontos_de_Ataque() - (player.getPontos_de_Defesa()/1.5)), player.getPontos_De_Vida());
+                        enemy.getNome(), (enemy.getPontos_de_Ataque() - (player.getPontos_de_Defesa()/3)), player.getPontos_De_Vida());
                         System.out.print("\nInsira uma ação novamente para continuar: (ATK) || (CHECK) || (CURAR) || (FUGIR):  ");
                         player.setEscolha(entrada.nextLine());
                     break;
@@ -126,7 +126,7 @@ public class App {
                     //Opção para caso o jogador escolha fugir (Irá perder pontos de experiência):
                     case "FUGIR":
                         player.setPontos_Experiencia(false, enemy.getNivel());
-                        System.out.println("Você decidiu fugir! Por conta da sua covardice, você não ganhou nenhum ponto de experiência!"+
+                        System.out.println("Você decidiu fugir! Por conta da sua covardice, você perdeu " + (enemy.getNivel()*2) + " pontos de experiência!"+
                             "\nEscolha uma das opções para continuar Avançar(AVA) || Ver Status(VER) || Sair(SAIR):");   
                     break;
 
