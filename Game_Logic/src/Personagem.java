@@ -64,5 +64,4 @@ public abstract class Personagem {
 
     //Método responsável pela ação de ataque:
     public abstract double Atacar(double x, double y, double z);
-    
 }

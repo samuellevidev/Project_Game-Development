@@ -3,7 +3,8 @@ public class Jogador extends Personagem{
     //Atributos proprios da classe Jogador:
     private String escolha; //Escolha que será fornecida pelo jogador.
     private int pontos_experiencia; //Valor que molda o nivel do jogador.
-
+    private int sala;//Variável responsável por identificar a sala em que o jogador está.
+    
     /*Funções e Métodos:
     * Getters: Retorna o valor da variável
     * Setters: Atribui um valor a variável.
@@ -28,6 +29,20 @@ public class Jogador extends Personagem{
     public int getPontos_Experiencia() {
         return pontos_experiencia;
     }
+
+    //Variável sala:
+    public int getSala() {
+        return sala;
+    }
+    public void setSala(boolean decisao) {
+        if (decisao == true) {
+            this.sala += 1;
+        }
+        else if (decisao == false) {
+            this.sala -= 1;
+        }
+    }
+
     //FUNÇÕES POLIMORFADAS COM SOBREPOSIÇÃO DA CLASSE PERSONAGEM: 
 
     //Função que retorna o dano causado ao inimigo pelo jogador:
