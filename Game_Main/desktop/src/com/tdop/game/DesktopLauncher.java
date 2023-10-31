@@ -10,7 +10,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 		config.setForegroundFPS(60);
 		config.setTitle("TheDepthsOfPrekirs");
-		config.setWindowedMode(1280, 720);
+		config.setWindowedMode(1080, 720);
 		config.useVsync(true);
 		new Lwjgl3Application(new MainApp(), config);
 	}
